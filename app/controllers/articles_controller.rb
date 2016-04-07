@@ -8,16 +8,16 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
+    @comment.article.id = @article.id
   end
 
   def show
+    @comment = Comment.new
     @article = Article.find_by(id: params[:id])
   end
 
   def create
     @article = Article.new(article_params)
-    # @article.title = params[:article][:title]
-    # @article.body = params[:article][:body]
     @article.save
 
     flash.notice = "Article '#{@article.title}' Created!"
